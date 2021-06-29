@@ -1,19 +1,20 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Panel></Panel>
+    <Form></Form>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Panel from "./components/panel.vue";
+import Form from "./components/form.vue";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    Panel,
+    Form
   }
-}
+};
 </script>
 
 <style>
@@ -21,8 +22,12 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  padding: 17px 16px;
+  width: 100%;
+  max-width: 1366px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
 }
 </style>

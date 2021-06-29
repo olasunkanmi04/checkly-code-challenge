@@ -1,24 +1,13 @@
 # checkly-code-challenge
 
-## Project setup
-```
-npm install
-```
+## How I approached the challenge
 
-### Compiles and hot-reloads for development
 ```
-npm run serve
-```
+I set up my development environment using Vue CLI as the challenge required I use Vuejs.
+I then proceed to break the challenge into stages.
 
-### Compiles and minifies for production
+- Code the UI interface
+  - Component base approach
+  - SCSS for styling
+- Code the functionalities
 ```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
