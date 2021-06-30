@@ -76,3 +76,8 @@ The recorded steps are stored in this variable array.
 I pass this array of steps to the panel.vue component and loop through the recorded steps and display using the step.vue component.
 
 The Various variables are passed to the child components using `props` and I created different methods that are called from the various child components using `$emit` to determine the state of the various variables.
+
+## Recorder
+
+To record a step I had to create a method that listen to click event on each form element and then return the event dom object data. I checked the `target` key and extract the `localName`, `type` and `classes` of the clicked element.
+I added `type` because there are different input types and it helps to differenciate the inputs in the recorder using the input types.

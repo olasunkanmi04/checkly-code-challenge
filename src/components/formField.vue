@@ -3,19 +3,19 @@
     <h3>MOCK UP FORM</h3>
     <input
       class="form__field"
-      @click="listen($event)"
+      @click="listen"
       type="text"
       placeholder="Input box 1"
     />
     <input
       class="form__field"
-      @click="listen($event)"
+      @click="listen"
       type="text"
       placeholder="Input box 2"
     />
     <div class="form__radio-wrap">
       <input
-        @click="listen($event)"
+        @click="listen"
         class="form__radio"
         type="radio"
         name="radio"
@@ -25,7 +25,7 @@
     </div>
     <div class="form__radio-wrap">
       <input
-        @click="listen($event)"
+        @click="listen"
         class="form__radio"
         type="radio"
         name="radio"
@@ -36,14 +36,14 @@
     <div class="form__radio-wrap">
       <input
         class="form__radio"
-        @click="listen($event)"
+        @click="listen"
         type="radio"
         name="radio"
         id="radio3"
       />
       <label for="radio3">Radio button 3</label>
     </div>
-    <button class="form__button" type="button" @click="listen($event)">
+    <button class="form__button" type="button" @click="listen">
       Button 1
     </button>
   </div>
