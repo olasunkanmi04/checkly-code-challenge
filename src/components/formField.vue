@@ -59,7 +59,9 @@ export default {
   methods: {
     listen(e) {
       if (this.startedRecording && !this.editMode) {
-        const step = `${e.srcElement.type}.${e.srcElement.classList}`;
+        const step = {
+          value: `${e.target.localName}.${e.target.type}.${e.target.classList}`
+        };
         this.$emit("updateStep", step);
       }
     }

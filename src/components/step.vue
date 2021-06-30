@@ -17,7 +17,7 @@
         type="text"
         :disabled="!editMode"
         class="recorder__step-input"
-        :value="step"
+        v-model="step.value"
       />
     </div>
   </div>
@@ -28,7 +28,7 @@ export default {
   name: "recoder",
   props: {
     editMode: Boolean,
-    step: String,
+    step: Object,
     index: Number
   }
 };
