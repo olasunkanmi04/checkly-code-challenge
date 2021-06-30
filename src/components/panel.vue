@@ -1,42 +1,86 @@
 <template>
-  <div class="panel__wrap">
-    <div class="panel__action">
-      <button class="panel__btn">Start</button>
-      <button class="panel__btn">Recording...</button>
-      <div class="panel__action-others">
-        <button class="panel__btn">Save</button>
-        <button class="panel__btn">Continue</button>
+  <div class="panel">
+    <div class="panel__content">
+      <div class="panel__recorder">
+        <Step
+          :editMode="editMode"
+          :step="step"
+          :index="index"
+          v-for="(step, index) in steps"
+          :key="index"
+          @deleteStep="deleteCurrentStep"
+        ></Step>
+      </div>
+      <div class="panel__action">
+        <button
+          class="panel__btn"
+          v-if="!startedRecording"
+          @click="$emit('updateStartRecording', true)"
+        >
+          Start
+        </button>
+        <button
+          class="panel__btn"
+          v-if="startedRecording && !editMode"
+          @click="$emit('updateEditMode')"
+        >
+          Recording...
+        </button>
+        <div class="panel__action-others" v-if="editMode">
+          <button class="panel__btn" @click="saveRecording">Save</button>
+          <button class="panel__btn" @click="$emit('updateEditMode')">
+            Continue
+          </button>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import Step from "./step.vue";
 export default {
   name: "leftPanel",
+  components: {
+    Step
+  },
+  props: {
+    startedRecording: Boolean,
+    editMode: Boolean,
+    steps: Array
+  },
   data() {
     return {
-      startRecording: false,
-      stopRecording: false
+      edit: false
     };
+  },
+  methods: {
+    saveRecording() {
+      this.$emit("updateStartRecording", false);
+      this.$emit("updateEditMode", false);
+    },
+    deleteCurrentStep(index) {
+      this.$emit("deleteCurrentStep", index);
+    }
   }
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .panel {
-  &__wrap {
-    height: calc(100vh - 50px);
-    background: #e8e8e8;
-    width: 290px;
-    overflow-y: auto;
-    position: relative;
-    padding: 10px 15px;
-  }
-  &__action {
+  height: calc(100vh - 50px);
+  background: #e8e8e8;
+  width: 290px;
+  overflow-y: auto;
+  position: relative;
+  padding: 10px 15px;
+  &__content {
     position: absolute;
     width: calc(100% - 30px);
     bottom: 10px;
+  }
+
+  &__action {
     &-others {
       display: flex;
       .panel__btn {
@@ -46,7 +90,6 @@ export default {
       }
     }
   }
-
   &__btn {
     width: 100%;
     background: #c4c4c4;
@@ -60,6 +103,14 @@ export default {
     text-transform: uppercase;
     color: #000000;
     font-weight: 600;
+    cursor: pointer;
+  }
+
+  &__recorder {
+    height: auto;
+    max-height: calc(100vh - 100px);
+    margin-bottom: 10px;
+    overflow-y: auto;
   }
 }
 </style>
