@@ -12,6 +12,24 @@ Build a proof-of-concept that implements the mocked up flow:
 - You are free to add things you really find necessary or important.
 - Use Vue.js and whatever other library you want.
 
+## Project setup
+
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+
+```
+npm run build
+```
+
 ## How I approached the challenge
 
 I set up my development environment using Vue CLI as the challenge required I use Vuejs.
