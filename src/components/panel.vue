@@ -13,6 +13,7 @@
       </div>
       <div class="panel__action">
         <button
+          id="startBtn"
           class="panel__btn"
           v-if="!startedRecording"
           @click="$emit('updateStartRecording', true)"
@@ -20,15 +21,22 @@
           Start
         </button>
         <button
+          id="recordingBtn"
           class="panel__btn"
           v-if="startedRecording && !editMode"
           @click="$emit('updateEditMode')"
         >
           Recording...
         </button>
-        <div class="panel__action-others" v-if="editMode">
-          <button class="panel__btn" @click="saveRecording">Save</button>
-          <button class="panel__btn" @click="$emit('updateEditMode')">
+        <div id="editMode" class="panel__action-others" v-if="editMode">
+          <button id="saveBtn" class="panel__btn" @click="saveRecording">
+            Save
+          </button>
+          <button
+            id="continueBtn"
+            class="panel__btn"
+            @click="$emit('updateEditMode')"
+          >
             Continue
           </button>
         </div>

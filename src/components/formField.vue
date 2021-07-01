@@ -43,7 +43,7 @@
       />
       <label for="radio3">Radio button 3</label>
     </div>
-    <button class="form__button" type="button" @click="listen">
+    <button id="recordStep" class="form__button" type="button" @click="listen">
       Button 1
     </button>
   </div>
