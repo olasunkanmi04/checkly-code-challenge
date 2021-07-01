@@ -36,10 +36,10 @@ I set up my development environment using Vue CLI as the challenge required I us
 I then proceed to break the challenge into stages.
 
 - [Code the UI interface](#component-base-approach)
-  - Component-base approach
-  - SCSS for styling
+  - [Component-base approach](#component-base-approach)
+  - [SCSS for styling](#scss-for-styling)
 - [Code the functionalities](#code-the-functionalities)
-- Add E2E testing
+- [Add E2E testing](#add-e2e-testing)
 
 ## Code the UI interface
 
@@ -62,26 +62,36 @@ I introduced a couple of variables in the root component, App.vue
 #### startRecording:
 
 This works as a recording status to determine the start of recording and the end of it depending on its boolean state.
-I pass it to the child component, panel.vue to determine the state of the start, stop, save and continue button.
-I also pass it to the child component, formField.vue to determine when to start listening to clicks.
+I pass it to the child component, `panel.vue` to determine the state of the start, stop, save and continue `button`.
+I also pass it to the child component, `formField.vue` to determine when to start listening to clicks.
 
 #### editMode:
 
 This works as an edit status to determine edit state depending on its boolean state
-I pass it to the child component, panel.vue to determine the edit state of the steps.
-I also pass it to the child component, formField.vue to determine when to pause on listening to clicks on the form elements.
+I pass it to the child component, `panel.vue` to determine the edit state of the steps.
+I also pass it to the child component, `formField.vue` to determine when to pause on listening to clicks on the form elements.
 
 #### steps:
 
-The recorded steps are stored in this variable array.
-I pass this array of steps to the panel.vue component and loop through the recorded steps and display using the step.vue component.
+The recorded steps are stored in this variable `array`.
+I pass this `array` of steps to the `panel.vue` component and loop through the recorded steps and display using the `step.vue` component.
 
-The Various variables are passed to the child components using `props` and I created different methods that are called from the various child components using `$emit` to determine the state of the various variables.
+The various variables are passed to the child components using `props` and I created different methods that are called from the various child components using `$emit` to determine the state of the various variables.
 
-## Recorder
+### Recorder
 
-To record a step I had to create a method that listen to click event on each form element and then return the event dom object data. I checked the `target` key and extract the `localName`, `type` and `classes` of the clicked element.
+To record a step I had to create a method that listen to click event on each form element and then return the event dom 
+data. I checked the `target` key and extract the `localName`, `type` and `classes` of the clicked element.
 I added `type` because there are different input types and it helps to differenciate the inputs in the recorder using the input types.
+
+### Edit step
+
+When the 'Recording...' `button` is clicked I stops/pause the recorder by changing the boolean state of [editMode](#editMode) to enable the edit of the recorded step by undisabling the `input` field.
+I initially made the [steps](#steps) an `array` of `strings` but once I edit the step and click save it returns back to it's intial state, so I have to make [steps](#steps) an `array` of `objects` and passing the value to Vue `v-model` and it became editable and stays same after save is clicked.
+
+### Delete step
+
+I impplemented a delete function that takes the index of the step whose delete was clicked and remove it from the steps `array` using `splice`
 
 ## Add E2E testing
 
