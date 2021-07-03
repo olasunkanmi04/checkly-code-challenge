@@ -80,7 +80,7 @@ The variables listed above are now passed to the child components using `props` 
 
 ### Recorder
 
-To record a step I had to create a method that listen to click event on each form element and then return the event dom 
+To record a step I had to create a method that listen to click event on each form element and then return the event dom
 data. I checked the `target` key and extract the `localName`, `type` and `classes` of the clicked element.
 I added `type` because there are different input types and it helps to differenciate the inputs in the recorder.
 
@@ -99,6 +99,6 @@ I added e2e testing to test the click events on the various buttons.
 Using [Cypress](https://www.cypress.io/) for the testing, I tested the click on the Start `button` which should change the boolean state of the [startRecording](#startRecording) to true and I used Vue conditional rendering `v-if` to render the Recording `button`.
 I also did same for Recording `button` which on click acts as stop/pause `button` and changes the boolean state of the [editMode](#editMode) which then renders the Save and Continue `button`s.
 
-In order to test the recording of steps, I wrote a test to listen for a click on the only button on the form and check that the step component is rendered by checking if the `.recorder` class exist in the application.
+In order to test the recording of steps, I wrote a test to listen for a click on the only button on the form and check that the step component is rendered by checking if the `.recorder` class exist in the application. I also had a test for delete function.
 
 All test passed!

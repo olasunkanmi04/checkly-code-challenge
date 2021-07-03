@@ -2,11 +2,11 @@
 // npx cypress run
 describe("Buttons action test", () => {
   it("Click start button", () => {
-    cy.visit("http://localhost:8083");
+    cy.visit("http://localhost:8080");
     cy.get("#startBtn").click();
-    cy.get("#recordingBtn");
+    cy.get("#recordingBtn").should("exist");
     cy.get("#recordStep").click();
-    cy.get(".recorder");
+    cy.get(".recorder").should("exist");
   });
 
   it("Click stop recording", () => {
@@ -14,8 +14,13 @@ describe("Buttons action test", () => {
     cy.get("#editMode").contains("button", "Save");
   });
 
+  it("Click delete", () => {
+    cy.get(".recorder__delete").click();
+    cy.get(".recorder").should("not.exist");
+  });
+
   it("Click save button", () => {
     cy.get("#saveBtn").click();
-    cy.get("#startBtn").contains("Start");
+    cy.get("#startBtn").should("exist");
   });
 });
