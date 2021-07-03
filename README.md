@@ -32,7 +32,7 @@ npx cypress run
 
 ## How I approached the challenge
 
-I set up my development environment using Vue CLI as the challenge required I use Vuejs.
+I start by setting up my development environment using Vue CLI as the challenge required I use Vuejs.
 I then proceed to break the challenge into stages.
 
 - [Code the UI interface](#component-base-approach)
@@ -43,21 +43,21 @@ I then proceed to break the challenge into stages.
 
 ## Code the UI interface
 
-### Component base approach
+### Component-base approach
 
 I split the UI into components.
-I made the left panel a component, the step recorder a component and the form a component.
-This will make the various components reusable in the future and with every components being a single file it makes code readablility easier
+I made the left panel, the step recorder and the form individual components.
+This will make the various components reusable in the future and with every components being a single file it makes code readablility easier.
 
 ### SCSS for styling
 
 I installed sass-loader and node-sass loader to enable me use SCSS.
-I stuck to styling in individual components instead of creating a styling sheet because it's a small project that don't need so much of unnecessary files that I could do away with. I also used the BEM stylying methodology to enable a self explanatory class naming convenention.
+I stuck to styling in individual components instead of creating a style sheet, because, it's a small project that don't need so much of unnecessary files that I could do away with. I also used the BEM stylying methodology to enable a self explanatory class naming convenention.
 
 ## Code the functionalities
 
 I created an interaction between the components using `props` and `$emit`.
-I introduced a couple of variables in the root component, App.vue
+I then introduced a couple of variables in the root component, `App.vue`
 
 #### startRecording:
 
@@ -74,20 +74,20 @@ I also pass it to the child component, `formField.vue` to determine when to paus
 #### steps:
 
 The recorded steps are stored in this variable `array`.
-I pass this `array` of steps to the `panel.vue` component and loop through the recorded steps and display using the `step.vue` component.
+I pass this `array` of steps to the `panel.vue` component, loop through the recorded steps and display using the `step.vue` component.
 
-The various variables are passed to the child components using `props` and I created different methods that are called from the various child components using `$emit` to determine the state of the various variables.
+The variables listed above are now passed to the child components using `props` and I created different methods that are called from the various child components using `$emit` to determine their state.
 
 ### Recorder
 
 To record a step I had to create a method that listen to click event on each form element and then return the event dom 
 data. I checked the `target` key and extract the `localName`, `type` and `classes` of the clicked element.
-I added `type` because there are different input types and it helps to differenciate the inputs in the recorder using the input types.
+I added `type` because there are different input types and it helps to differenciate the inputs in the recorder.
 
 ### Edit step
 
-When the 'Recording...' `button` is clicked I stops/pause the recorder by changing the boolean state of [editMode](#editMode) to enable the edit of the recorded step by undisabling the `input` field.
-I initially made the [steps](#steps) an `array` of `strings` but once I edit the step and click save it returns back to it's intial state, so I have to make [steps](#steps) an `array` of `objects` and passing the value to Vue `v-model` and it became editable and stays same after save is clicked.
+When the 'Recording...' `button` is clicked it stops/pause the recorder by changing the boolean state of [editMode](#editMode) to enable the edit of the recorded step by undisabling the `input` field.
+I initially made the [steps](#steps) an `array` of `strings` but once I edit the step and click save it returns back to it's intial state, so I had to make [steps](#steps) an `array` of `objects` and passing the value to Vue `v-model` it then became editable and stays same after save is clicked.
 
 ### Delete step
 
@@ -99,6 +99,6 @@ I added e2e testing to test the click events on the various buttons.
 Using [Cypress](https://www.cypress.io/) for the testing, I tested the click on the Start `button` which should change the boolean state of the [startRecording](#startRecording) to true and I used Vue conditional rendering `v-if` to render the Recording `button`.
 I also did same for Recording `button` which on click acts as stop/pause `button` and changes the boolean state of the [editMode](#editMode) which then renders the Save and Continue `button`s.
 
-In order to test the recording of steps, I wrote a test to listen for a click on the only button on the form and check the step component is rendered by checking is the `.recorder` class exist in the application.
+In order to test the recording of steps, I wrote a test to listen for a click on the only button on the form and check that the step component is rendered by checking if the `.recorder` class exist in the application.
 
 All test passed!
